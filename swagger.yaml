@@ -1,0 +1,132 @@
+openapi: 3.0.0
+info:
+  title: Hospital Management API
+  description: API for managing departments and doctors
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000/api
+    description: Local development server
+paths:
+  /addDepartment:
+    post:
+      summary: Add a new department
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dept_name:
+                  type: string
+                dept_code:
+                  type: string
+      responses:
+        "201":
+          description: Department created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  dept_name:
+                    type: string
+                  dept_code:
+                    type: string
+        "400":
+          description: Bad request
+  
+  /addDoctors:
+    post:
+      summary: Add a new doctor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                dept_name:
+                  type: string
+                ph_no:
+                  type: string
+                speciality:
+                  type: string
+                reg_no:
+                  type: string
+      responses:
+        "201":
+          description: Doctor added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  name:
+                    type: string
+                  dept_name:
+                    type: string
+                  ph_no:
+                    type: string
+                  speciality:
+                    type: string
+                  reg_no:
+                    type: string
+        "400":
+          description: Bad request
+  
+  /doctors:
+    get:
+      summary: Get list of doctors
+      responses:
+        "200":
+          description: List of doctors retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    name:
+                      type: string
+                    dept_name:
+                      type: string
+                    ph_no:
+                      type: string
+                    speciality:
+                      type: string
+                    reg_no:
+                      type: string
+        "500":
+          description: Server error
+  
+  /departments:
+    get:
+      summary: Get list of departments
+      responses:
+        "200":
+          description: List of departments retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    dept_name:
+                      type: string
+                    dept_code:
+                      type: string
+        "500":
+          description: Server error

@@ -4,6 +4,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const mongoString = process.env.DATABASE_URL;
 const routes = require('./routes/routes');
+const setupSwagger = require('./swagger');
+
 
 
 mongoose.connect(mongoString);
@@ -20,6 +22,7 @@ database.once('connected', () => {
 const app = express();
 
 app.use(express.json());
+setupSwagger(app);
 
 app.use('/api', routes);
 app.listen(3000, () => {
